@@ -1,0 +1,25 @@
+name: Merge Branch [next -> next-replit]
+
+on:
+  push:
+    branches: [next]
+  schedule:
+  # At 5 minutes past the hour
+    - cron: '5 * * * *'
+  workflow_dispatch:
+
+jobs:
+  merge_source_branch_into_target_branch:
+    runs-on: ubuntu-latest
+    name: Merge source branch into target branch
+
+    steps:
+      - name: 
+        uses: tukasz/direct-merge-action@master
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          owner: Xayanide
+          repo: Quaver
+          source-branch: next
+          target-branch: next-replit
+          commit-message: "Merge branch 'next' into next-replit"
